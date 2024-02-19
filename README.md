@@ -61,8 +61,8 @@ gtkwave wave.ghw
 
 ```
 ├── counter/            
-│   ├── decoder_3to8.vhdl                     # VHDL source files
-│   ├── decoder_3to8_tb.vhdl                  # Testbench files
+│   ├── counter.vhdl                     # VHDL source files
+│   ├── counter_tb.vhdl                  # Testbench files
 │   └── README.md
 ├── decoder/               
 │   ├── bcd_counter_seven_segment.vhdl        # VHDL source files

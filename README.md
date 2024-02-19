@@ -23,7 +23,6 @@ Ensure you have the following software installed on your system:
 
 - GHDL
 - GTKWave
-- Visual Studio Code
 
 ## Getting Started
 

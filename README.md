@@ -29,7 +29,7 @@ Ensure you have the following software installed on your system:
 
 ```bash
 git clone https://github.com/anish77777/EMBEDDED.git
-cd Embedded-System-VHDL
+cd EMBEDDED
 ```
 
 ### Installing GHDL

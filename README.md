@@ -10,7 +10,6 @@ This repository contains VHDL code and test cases for  embedded system assignmen
   - [Cloning the Repository](#cloning-the-repository)
   - [Installing GHDL](#installing-ghdl)
   - [Installing GTKWave](#installing-gtkwave)
-  - [Setting up VSCode](#setting-up-vscode)
 - [Running Test Cases](#running-test-cases)
 - [Project Structure](#project-structure)
 

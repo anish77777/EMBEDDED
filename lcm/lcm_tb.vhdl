@@ -1,57 +1,46 @@
-library IEEE;
-use IEEE.STD_LOGIC_1164.ALL;
+library ieee;
+use ieee.std_logic_1164.all;
 
+entity fsmtb_lcm  is 
+	end fsmtb_lcm;
 
-entity lcm_tb is
-end lcm_tb;
-
-architecture behavior of lcm_tb is
-    -- Component declaration for the LCM module
-    component LCM
-        Port ( RESET : in  STD_LOGIC;
-               CLK : in  STD_LOGIC;
-               NUM1 : in  INTEGER;
-               NUM2 : in  INTEGER;
-               LCM : out  INTEGER);
-    end component;
-
-    -- Signals for lcm_tb
-    signal RESET : STD_LOGIC := '0';
-    signal CLK : STD_LOGIC := '0';
-    signal NUM1, NUM2, Result_LCM : INTEGER;
+architecture behavior of fsmtb_lcm is 
+signal CLK, RESET: std_logic;
+signal A, B, LCM: integer;
+component fsm_LCM 
+	port(CLK, RESET : IN STD_LOGIC;
+	    A, B: IN INTEGER;
+	    LCM : OUT INTEGER);
+END COMPONENT;
+BEGIN
+fsm_LCM1 : fsm_LCM port map(CLK=> CLK, RESET=>  RESET, A=>A, B=>B, LCM=>LCM);
+clock: process
 begin
-    -- Instantiate the LCM module
-    DUT: LCM port map (RESET, CLK, NUM1, NUM2, Result_LCM);
+	CLK<= '1';
+	wait for 100 ns;
 
-    -- Clock process
-    CLK_Process : process
-    begin
-        while now < 1000 ns loop
-            CLK <= '0';
-            wait for 10 ns;
-            CLK <= '1';
-            wait for 10 ns;
-        end loop;
-        wait;
-    end process;
+	CLK <= '0';
+	WAIT FOR 100 NS;
+	
+end process;
+process
+begin
+	RESET <= '1';
+	wait for 10 ns;
+	RESET <= '0';
 
-    -- Test cases
-    process
-    begin
-        -- Test case 1: Basic test case
-        NUM1 <= 3;
-        NUM2 <= 5;
-        wait for 100 ns;
-        assert (Result_LCM = 15) report "Test case 1 failed" severity error;
+	A <= 45;
+	B <= 15;
+	wait for 1600 ns;
 
-        -- Test case 2: Edge case with one input as zero
-        NUM1 <= 0;
-        NUM2 <= 7;
-        wait for 100 ns;
-        assert (Result_LCM = 0) report "Test case 2 failed" severity error;
+	A <= 8;
+	B <= 10;
+	wait for 1600 ns;
 
-        -- Add more test cases here...
+	A <= 15;
+	B <= 55;
+	wait for 1600 ns;
 
-        wait;
-    end process;
+	WAIT;
+end process;
 end behavior;

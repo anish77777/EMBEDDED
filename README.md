@@ -30,7 +30,7 @@ Ensure you have the following software installed on your system:
 ### Cloning the Repository
 
 ```bash
-git clone https://github.com/Aayush518/Embedded-System-VHDL.git
+git clone https://github.com/anish77777/EMBEDDED.git
 cd Embedded-System-VHDL
 ```
 

@@ -82,13 +82,13 @@ gtkwave wave.ghw
 
 
 ```
-├── src/                    # VHDL source files
-│   ├── module1.vhd
-│   ├── module2.vhd
+├── 3to8Decoder/                   # VHDL source files
+│   ├── decoder_3to8.vhdl
+│   ├── decoder_3to8_tb.vhdl
 │   └── ...
-├── test/                   # Testbench files
-│   ├── testbench1.vhd
-│   ├── testbench2.vhd
+├── 7segment/                   # Testbench files
+│   ├── bcd_counter_seven_segment.vhdl
+│   ├── bcd_counter_seven_segment_tb.vhdl
 │   └── ...
 └── README.md               # Project documentation
 ```

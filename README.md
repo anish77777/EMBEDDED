@@ -42,26 +42,6 @@ Follow the instructions on the [GHDL GitHub repository](https://github.com/ghdl/
 
 Follow the instructions on the [GTKWave website](http://gtkwave.sourceforge.net/) to install GTKWave on your system.
 
-### Setting up VSCode
-
-1. Install the "GHDL Language Server" extension from the Visual Studio Code marketplace.
-
-2. Open your project folder in VSCode.
-
-3. Create a `.vscode` folder in your project and add a `settings.json` file with the following content:
-
-```json
-{
-  "files.associations": {
-    "*.vhd": "vhdl"
-  },
-  "ghdlLS.trace.server": "verbose",
-  "ghdlLS.trace.transport": "verbose"
-}
-```
-
-This ensures proper VHDL language support and configuration for GHDL in VSCode.
-
 ## Running Test Cases
 
 Describe how to run the test cases using GHDL and how to visualize waveforms with GTKWave.

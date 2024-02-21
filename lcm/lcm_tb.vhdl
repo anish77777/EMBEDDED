@@ -1,46 +1,71 @@
 library ieee;
 use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
 
-entity fsmtb_lcm  is 
-	end fsmtb_lcm;
+entity fsm_lcm_tb is
+end fsm_lcm_tb;
 
-architecture behavior of fsmtb_lcm is 
-signal CLK, RESET: std_logic;
-signal A, B, LCM: integer;
-component fsm_LCM 
-	port(CLK, RESET : IN STD_LOGIC;
-	    A, B: IN INTEGER;
-	    LCM : OUT INTEGER);
-END COMPONENT;
-BEGIN
-fsm_LCM1 : fsm_LCM port map(CLK=> CLK, RESET=>  RESET, A=>A, B=>B, LCM=>LCM);
-clock: process
+architecture sim of fsm_lcm_tb is
+    constant CLK_PERIOD : time := 10 ns;
+    
+    signal clk, reset : std_logic := '0';
+    signal A, B : integer := 12;
+    signal LCM_out : integer;
+
+    component fsm_lcm is
+        port(
+            clk, reset: in std_logic;
+            A, B: in integer;
+            LCM: out integer
+        );
+    end component;
+
 begin
-	CLK<= '1';
-	wait for 100 ns;
 
-	CLK <= '0';
-	WAIT FOR 100 NS;
-	
-end process;
-process
-begin
-	RESET <= '1';
-	wait for 10 ns;
-	RESET <= '0';
+    DUT : fsm_lcm
+    port map (
+        clk => clk,
+        reset => reset,
+        A => A,
+        B => B,
+        LCM => LCM_out
+    );
 
-	A <= 45;
-	B <= 15;
-	wait for 1600 ns;
+    -- Clock process
+    clk_process : process
+    begin
+        while now < 1000 ns loop
+            clk <= '0';
+            wait for CLK_PERIOD / 2;
+            clk <= '1';
+            wait for CLK_PERIOD / 2;
+        end loop;
+        wait;
+    end process clk_process;
 
-	A <= 8;
-	B <= 10;
-	wait for 1600 ns;
+    -- Stimulus process
+    stimulus : process
+    begin
+        reset <= '1';
+        wait for CLK_PERIOD * 2;
+        reset <= '0';
 
-	A <= 15;
-	B <= 55;
-	wait for 1600 ns;
+        -- Test Case 1: A = 12, B = 8
+        A <= 12;
+        B <= 8;
+        wait for CLK_PERIOD * 10;
+        
+        -- Test Case 2: A = 15, B = 20
+        A <= 15;
+        B <= 20;
+        wait for CLK_PERIOD * 10;
+        
+        -- Test Case 3: A = 30, B = 40
+        A <= 30;
+        B <= 40;
+        wait for CLK_PERIOD * 10;
+        
+        wait;
+    end process stimulus;
 
-	WAIT;
-end process;
-end behavior;
+end sim;
